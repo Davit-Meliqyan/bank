@@ -13,9 +13,13 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cvc",length = 15,
-            nullable = false, unique = true)
+    @Column(name = "cvc",length = 3,
+            nullable = false)
     private String CVC;
+
+    @Column(name = "card_number",length = 16,
+            nullable = false)
+    private String cardNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "card_status", nullable = false)
@@ -39,13 +43,21 @@ public class Card {
     public Card() {
     }
 
-    public Card(Long id, String CVC, CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate) {
-        this.id = id;
+    public Card(String CVC, String cardNumber, CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate) {
         this.CVC = CVC;
+        this.cardNumber = cardNumber;
         this.cardStatus = cardStatus;
         this.cardType = cardType;
         this.pin = pin;
         this.expirationDate = expirationDate;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public Long getId() {

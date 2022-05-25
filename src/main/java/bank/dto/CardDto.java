@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class CardDto {
 
-    private String CVC;
+   // private String CVC;
     private CardStatus cardStatus;
     private CardType cardType;
     private String pin;
@@ -22,16 +22,16 @@ public class CardDto {
         this.cardType = cardType;
         this.pin = pin;
         this.expirationDate = expirationDate;
-        this.CVC = CVC;
+      //  this.CVC = CVC;
     }
 
-    public String getCVC() {
-        return CVC;
-    }
-
-    public void setCVC(String CVC) {
-        this.CVC = CVC;
-    }
+//    public String getCVC() {
+//        return CVC;
+//    }
+//
+//    public void setCVC(String CVC) {
+//        this.CVC = CVC;
+//    }
 
 
     public CardStatus getCardStatus() {

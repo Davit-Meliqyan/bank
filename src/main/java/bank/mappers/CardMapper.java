@@ -5,6 +5,7 @@ import bank.model.Card;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.RandomStringUtils;
 
 @Component
 public class CardMapper {
@@ -14,7 +15,8 @@ public class CardMapper {
         Card card = new Card();
 
         card.setPin(cardDto.getPin());
-        card.setCVC(cardDto.getCVC());
+        card.setCVC(RandomStringUtils.randomNumeric(3));
+        card.setCardNumber(RandomStringUtils.randomNumeric(16));
         card.setCardStatus(cardDto.getCardStatus());
         card.setCardType(cardDto.getCardType());
         card.setExpirationDate(cardDto.getExpirationDate());
@@ -27,7 +29,7 @@ public class CardMapper {
         CardDto cardDto = new CardDto();
 
         cardDto.setPin(card.getPin());
-        cardDto.setCVC(card.getCVC());
+       // cardDto.setCVC(card.getCVC());
         cardDto.setCardStatus(card.getCardStatus());
         cardDto.setCardType(card.getCardType());
         cardDto.setExpirationDate(card.getExpirationDate());

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface CardRepository extends JpaRepository<Card,Long> {
 
     boolean existsByCVC(String cvc);
+    boolean existsByCardNumber(String cardNumber);
 
 }

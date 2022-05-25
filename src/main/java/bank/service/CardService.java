@@ -6,6 +6,7 @@ import bank.model.Card;
 import bank.repository.CardRepository;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import org.apache.commons.lang3.RandomStringUtils;
 
 @Service
 public class CardService {
@@ -18,7 +19,7 @@ public class CardService {
     }
 
     public Optional<CardDto> createCard(CardDto cardDto) {
-        if (cardRepository.existsByCVC(cardDto.getCVC())) {
+        if (cardRepository.existsByCardNumber(RandomStringUtils.randomNumeric(16))) {
             return Optional.empty();
         }
         Card cardToSave = this.cardMapper.toCard(cardDto);
