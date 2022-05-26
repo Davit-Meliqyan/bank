@@ -13,8 +13,18 @@ public class CardDto {
     private CardType cardType;
     private String pin;
     private LocalDate expirationDate;
+    private String cardNumber;
+
 
     public CardDto() {
+    }
+
+    public CardDto(CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate, String cardNumber) {
+        this.cardStatus = cardStatus;
+        this.cardType = cardType;
+        this.pin = pin;
+        this.expirationDate = expirationDate;
+        this.cardNumber = cardNumber;
     }
 
     public CardDto(Long id, CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate, String CVC) {
@@ -33,6 +43,14 @@ public class CardDto {
 //        this.CVC = CVC;
 //    }
 
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 
     public CardStatus getCardStatus() {
         return cardStatus;

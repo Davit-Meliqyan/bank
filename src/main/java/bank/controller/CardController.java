@@ -4,10 +4,10 @@ import bank.dto.CardDto;
 import bank.responses.CardCreationResponse;
 import bank.responses.CardLookupResponse;
 import bank.service.CardService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 
@@ -22,11 +22,11 @@ public class CardController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCard(@RequestBody CardDto Card) {
-        Assert.notNull(Card, "Card passed is null!");
-        Optional<CardDto> emp = cardService.createCard(Card);
+    public ResponseEntity<?> createCard(@RequestBody CardDto cardDto) {
+        Assert.notNull(cardDto, "Card passed is null!");
+        Optional<CardDto> emp = cardService.createCard(cardDto);
         if (emp.isEmpty()) {
-            return new CardCreationResponse(Card).onFailure();
+            return new CardCreationResponse(cardDto).onFailure();
         }
         return new CardCreationResponse(emp.get()).onSuccess();
     }
@@ -38,5 +38,13 @@ public class CardController {
             return new CardLookupResponse(emp.get()).onSuccess();
         }
         return new CardLookupResponse(null).onFailure();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCard(@PathVariable("id") Long id){
+        cardService.deleteCard(id);
+        return new ResponseEntity<>(
+                "Card was deleted ", HttpStatus.OK
+        );
     }
 }

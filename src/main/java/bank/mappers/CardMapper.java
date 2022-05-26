@@ -15,8 +15,7 @@ public class CardMapper {
         Card card = new Card();
 
         card.setPin(cardDto.getPin());
-        card.setCVC(RandomStringUtils.randomNumeric(3));
-        card.setCardNumber(RandomStringUtils.randomNumeric(16));
+
         card.setCardStatus(cardDto.getCardStatus());
         card.setCardType(cardDto.getCardType());
         card.setExpirationDate(cardDto.getExpirationDate());
