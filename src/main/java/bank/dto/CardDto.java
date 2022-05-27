@@ -14,9 +14,18 @@ public class CardDto {
     private String pin;
     private LocalDate expirationDate;
     private String cardNumber;
-
+    private Account account;
 
     public CardDto() {
+    }
+
+    public CardDto(CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate, String cardNumber, Account account) {
+        this.cardStatus = cardStatus;
+        this.cardType = cardType;
+        this.pin = pin;
+        this.expirationDate = expirationDate;
+        this.cardNumber = cardNumber;
+        this.account = account;
     }
 
     public CardDto(CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate, String cardNumber) {
@@ -46,6 +55,14 @@ public class CardDto {
 
     public String getCardNumber() {
         return cardNumber;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public void setCardNumber(String cardNumber) {

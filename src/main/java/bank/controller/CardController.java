@@ -3,6 +3,7 @@ package bank.controller;
 import bank.dto.CardDto;
 import bank.responses.CardCreationResponse;
 import bank.responses.CardLookupResponse;
+import bank.responses.CardUpdateResponse;
 import bank.service.CardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,4 +48,28 @@ public class CardController {
                 "Card was deleted ", HttpStatus.OK
         );
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCard(@PathVariable("id")Long id,@RequestBody CardDto cardDto){
+        Assert.notNull(cardDto,"Address is null ");
+        Optional<CardDto> card = cardService.updateCard(id,cardDto);
+        if (card.isEmpty()){
+            return new CardUpdateResponse(cardDto).onFailure();
+        }
+        return new CardUpdateResponse(card.get()).onSuccess();
+    }
+
+    @PutMapping("/activate/{id}")
+    public ResponseEntity<?> activateCard(@PathVariable("id") Long id, @RequestBody String pin){
+        Assert.notNull(pin,"Pin is null ");
+//        Optional<CardDto> card = cardService.activateCard(id,pin);
+//        if (card.isEmpty()){
+//            return new CardUpdateResponse(cardDto).onFailure();
+//        }
+        cardService.activateCard(id,pin);
+        return new ResponseEntity<>(
+                "Card was activated ", HttpStatus.OK
+        );
+    }
+
 }

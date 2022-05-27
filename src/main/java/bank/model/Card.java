@@ -29,7 +29,7 @@ public class Card {
     @Column(name = "card_type", nullable = false)
     private CardType cardType;
 
-    @Column(name = "pin", nullable = false )
+    @Column(name = "pin")
     private String pin;
 
     @Column(name = "expiration_date", nullable = false)
@@ -43,13 +43,15 @@ public class Card {
     public Card() {
     }
 
-    public Card(String CVC, String cardNumber, CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate) {
+    public Card(Long id, String CVC, String cardNumber, CardStatus cardStatus, CardType cardType, String pin, LocalDate expirationDate, Account account) {
+        this.id = id;
         this.CVC = CVC;
         this.cardNumber = cardNumber;
         this.cardStatus = cardStatus;
         this.cardType = cardType;
         this.pin = pin;
         this.expirationDate = expirationDate;
+        this.account = account;
     }
 
     public String getCardNumber() {
